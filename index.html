@@ -1,8 +1,8 @@
-# XiaoJing<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>致小傻瓜</title>
+    <title>致我的小傻瓜</title>
     <style>
         body {
             margin: 0;
@@ -19,26 +19,32 @@
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 50px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             z-index: 1;
+            max-width: 80%;
         }
 
-        h1 { color: #ff4d4d; font-size: 2.5em; }
+        h1 { color: #ff4d4d; font-size: 2.2em; margin-bottom: 10px; }
 
         #timer {
-            font-size: 1.2em;
+            font-size: 1.3em;
             margin: 20px 0;
             color: #555;
+            background: #fff0f0;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
         }
 
         #typed-text {
-            font-size: 1.5em;
+            font-size: 1.4em;
             height: 1.6em;
             color: #333;
-            margin-bottom: 30px;
+            margin: 20px 0 40px 0;
+            font-style: italic;
         }
 
         .buttons {
@@ -48,24 +54,24 @@
         }
 
         button {
-            padding: 15px 30px;
+            padding: 15px 35px;
             font-size: 1.1em;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        #yes-btn { background: #ff4d4d; color: white; }
+        #yes-btn { background: #ff4d4d; color: white; font-weight: bold; }
         #yes-btn:hover { transform: scale(1.1); background: #ff3333; }
 
         #no-btn { background: #aaa; color: white; position: relative; }
 
-        /* 爱心飘落动画 */
         .heart {
             position: absolute;
             color: #ff4d4d;
             animation: fall linear forwards;
+            user-select: none;
         }
 
         @keyframes fall {
@@ -76,9 +82,9 @@
 <body>
 
     <div class="container">
-        <h1>❤️ 亲爱的，我喜欢你很久了 ❤️</h1>
+        <h1>❤️ 亲爱的，这是我们相遇的时光 ❤️</h1>
         
-        <div id="timer">我们已经相识了：229 天加载中...</div>
+        <div id="timer">正在计算我们的回忆...</div>
 
         <div id="typed-text"></div>
 
@@ -89,55 +95,14 @@
     </div>
 
     <script>
-        // 1. 设置你们认识的日期 (2025年, 5月, 19日)
-        const startDate = new Date(2023, 4, 20); // 示例：2023年5月20日
+        // 【已为你修改】设置认识日期：2025年5月19日 (代码中月份需减1，即 4)
+        const startDate = new Date(2025, 4, 19); 
 
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
+            
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('timer').innerHTML = `这是我们留住回忆的第 <b>${days}</b> 天`;
-        }
-        setInterval(updateTimer, 1000);
-
-        // 2. 打字机效果
-        const text = "纵然万劫不复，纵然相思入骨，我只愿你眉眼如初，风华如故。";
-        let index = 0;
-        function typeWriter() {
-            if (index < text.length) {
-                document.getElementById("typed-text").innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, 150);
-            }
-        }
-        typeWriter();
-
-        // 3. 让“拒绝”按钮跑掉
-        function moveButton() {
-            const btn = document.getElementById('no-btn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.position = 'absolute';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
-        }
-
-        // 4. 点击“好呀”后的效果
-        function celebrate() {
-            document.querySelector('.container').innerHTML = "<h1>我就知道你会答应的！✨</h1><p style='font-size:1.5em'>今晚一起去庆祝吧！</p>";
-            setInterval(createHeart, 200);
-        }
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
-    </script>
-</body>
-</html>
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 100
